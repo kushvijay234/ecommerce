@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Cart = () => {
+const Cartitem = () => {
   return (
     <div>
-      cart
+      Cartitem
     </div>
   )
 }
 
-export default Cart
+export default Cartitem
