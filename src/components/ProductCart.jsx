@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import Star from '../assets/star.svg';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../reducer/CardSlice";
+
 
 const ProductCart = ({ list }) => {
-  const { title, thumbnail, price, rating } = list; 
+  const { id,title, thumbnail, price, rating } = list; 
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(0);
+  const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     setIsAdded(true);
+    dispatch(addToCart({ id, title, thumbnail, price, rating, quantity }));
   };
 
   const incrementQty = () => {
@@ -21,12 +26,12 @@ const ProductCart = ({ list }) => {
 
   return (
     <div className="flex flex-col p-3 shadow-md rounded-lg bg-gray-100">
-      <div className="justify-center">
+      <div className="justify-center" key={id}>
         <img src={thumbnail} alt={title} />
       </div>
       <div>
         <h3 className="text-md font-semibold text-center text-blue-800">
-          {title}
+          {title} 
         </h3>
         <div className="pt-2 flex justify-between">
             <p className="flex items-center pr-3"><img src={Star} /><span>{rating}</span></p>
